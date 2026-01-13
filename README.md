@@ -52,11 +52,48 @@ landPage/
 2. Les formulaires fonctionnent en mode simulation
 3. **Personnalisez le contenu** selon vos besoins
 
-### **Mode Production (Supabase)**
-1. **Suivez `DEPLOYMENT.md`** pour configurer Supabase
-2. **Remplacez** `forms.js` par `forms-supabase.js` dans le HTML
-3. **Configurez** vos credentials dans `supabase-config.js`
-4. **Déployez** sur Vercel, Netlify ou votre hébergeur
+### **Mode Production (Supabase)** ⭐ RECOMMANDÉ
+
+#### Étape 1: Configuration initiale
+```bash
+# 1. Créer le fichier .env à partir de l'exemple
+cp .env.example .env
+
+# 2. Éditer .env et remplacer par vos vraies clés Supabase
+# (Obtenez-les depuis https://supabase.com/dashboard → Settings → API)
+
+# 3. Vérifier la configuration
+./check-config.sh
+```
+
+#### Étape 2: Base de données Supabase
+1. **Créer un projet** sur [supabase.com](https://supabase.com)
+2. **Exécuter** `database/schema.sql` dans SQL Editor
+3. **Exécuter** `database/security.sql` pour la sécurité
+4. **Configurer CORS** dans Settings → API
+
+#### Étape 3: Test local
+```bash
+# Démarrer un serveur local
+npx http-server -p 8000
+# ou
+python3 -m http.server 8000
+
+# Ouvrir http://localhost:8000
+# Tester les formulaires
+```
+
+#### Étape 4: Déploiement
+```bash
+# Vercel (recommandé)
+vercel env add SUPABASE_URL
+vercel env add SUPABASE_ANON_KEY
+vercel deploy --prod
+
+# Ou suivre DEPLOYMENT.md pour Netlify/autres
+```
+
+📖 **Guide complet**: Voir `DEPLOYMENT.md` et `CONFIGURATION_STATUS.md`
 
 ## 📱 Responsive Design
 

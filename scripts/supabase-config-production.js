@@ -11,8 +11,8 @@
  */
 
 // 🔧 CONFIGURATION À MODIFIER AVEC VOS VRAIES CLÉS
-const SUPABASE_URL = 'https://REMPLACER-PAR-VOTRE-ID.supabase.co'
-const SUPABASE_ANON_KEY = 'REMPLACER-PAR-VOTRE-CLE-PUBLIQUE'
+const SUPABASE_URL = 'https://jxgcpdgbtrhcltqrzxus.supabase.co'
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp4Z2NwZGdidHJoY2x0cXJ6eHVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgyOTIxNDcsImV4cCI6MjA4Mzg2ODE0N30.xfsohISfH5epo62ydbrLg9MYLsH3LNCoCY6pVCUotNU'
 
 // 🚀 Initialisation du client Supabase
 const { createClient } = supabase;
