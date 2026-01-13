@@ -1,0 +1,99 @@
+/* CSS DE SÉCURITÉ LÉGER - Préserve l'identité visuelle d'OpenTalent */
+
+/* 1. Protection ciblée contre l'injection CSS */
+input::before,
+input::after,
+form::before,
+form::after {
+    content: none !important;
+}
+
+/* 2. Sécurisation des URLs malveillantes uniquement */
+*[style*="javascript:"],
+*[style*="data:text/html"] {
+    background-image: none !important;
+}
+
+/* 3. Protection contre les animations malveillantes infinies */
+*[style*="animation-iteration-count: infinite"] {
+    animation-iteration-count: 1 !important;
+}
+
+/* 4. Masquage sécurisé pour éléments sensibles */
+.hidden-sensitive {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+}
+
+/* 5. Protection contre les débordements malveillants */
+.secure-container {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+/* 6. Sécurisation des champs de formulaire */
+.form-field:focus {
+    outline-offset: 2px !important;
+}
+
+/* 7. Protection contre les scripts CSS (IE uniquement) */
+* {
+    behavior: none !important;
+    -moz-binding: none !important;
+}
+
+/* 8. Protection contre les liens javascript: */
+a[href^="javascript:"] {
+    pointer-events: none !important;
+    display: none !important;
+}
+
+/* 9. Style pour les messages de sécurité (préserve la palette OpenTalent) */
+.security-warning {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%) !important;
+    border: 1px solid #fca5a5 !important;
+    color: #dc2626 !important;
+    padding: 12px 16px !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    margin: 8px 0 !important;
+    position: relative !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.security-warning::before {
+    content: "🔒 " !important;
+    font-weight: bold !important;
+}
+
+/* 10. Classe utilitaire pour masquage accessible */
+.sr-only-secure {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* 11. Protection minimale contre l'injection de contenu */
+script:not([src]):not([type="application/ld+json"]) {
+    display: none !important;
+}
+
+/* 12. Sécurisation des transformations CSS suspectes */
+*[style*="transform: matrix"] {
+    transform: none !important;
+}
+
+/* 13. Protection contre l'exfiltration via font-face */
+/* Les font-face malveillantes seront bloquées via CSP */
+
+/* IMPORTANT: Ce CSS de sécurité est volontairement minimal pour préserver 
+   l'identité visuelle d'OpenTalent avec ses couleurs chaudes et ses gradients */

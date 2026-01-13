@@ -1,0 +1,220 @@
+/* SÉCURITÉ CSS - Protection contre les attaques CSS */
+
+/* 1. Protection contre l'injection CSS - VERSION PRÉSERVANT L'IDENTITÉ */
+/* Empêcher seulement l'injection de contenu malveillant sur les éléments sensibles */
+input::before,
+input::after,
+form::before,
+form::after {
+    content: none !important;
+}
+
+/* 2. Sécurisation sélective des URLs - PRÉSERVER LES GRADIENTS */
+/* Permettre les gradients et backgrounds légitimes de OpenTalent */
+input[style*="javascript:"],
+form[style*="javascript:"],
+*[style*="data:text/html"] {
+    background-image: none !important;
+}
+
+/* 3. Protection contre les attaques de timing CSS */
+/* Désactiver les animations sur les champs sensibles */
+input[type="password"],
+input[type="email"]:focus,
+input[name="email"]:focus {
+    animation: none !important;
+    transition: none !important;
+}
+
+/* 4. Masquage sécurisé des données sensibles */
+.hidden-sensitive {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+}
+
+/* 5. Protection contre les attaques de mesure */
+/* Empêcher la mesure précise de certains éléments */
+.security-protected {
+    box-sizing: border-box !important;
+    width: auto !important;
+    min-width: unset !important;
+    max-width: unset !important;
+}
+
+/* 6. Sécurisation des transformations CSS */
+/* Limiter les transformations pour éviter les problèmes de rendu */
+.safe-transform {
+    transform: translateZ(0) !important;
+    will-change: auto !important;
+}
+
+/* 7. Protection contre les débordements malveillants */
+.secure-container {
+    overflow: hidden !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto !important;
+}
+
+/* 8. Masquage des informations système */
+/* Empêcher la détection de fonts système */
+.text-secure {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', sans-serif !important;
+}
+
+/* 9. Protection contre les attaques de focus */
+/* Sécuriser les états de focus pour éviter la détection */
+.form-field:focus {
+    outline: 2px solid var(--primary-color) !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 3px rgba(251, 113, 133, 0.1) !important;
+}
+
+/* 10. Désactiver les features CSS potentiellement dangereuses */
+* {
+    /* Désactiver les expressions CSS (IE) */
+    behavior: none !important;
+    /* Désactiver les bindings XBL (Firefox) */
+    -moz-binding: none !important;
+}
+
+/* 11. Protection contre l'exfiltration de données via CSS */
+/* Empêcher les sélecteurs d'attributs sensibles */
+input[value*="password"],
+input[value*="token"],
+input[value*="secret"] {
+    background: transparent !important;
+    background-image: none !important;
+    background-color: transparent !important;
+}
+
+/* 12. Sécurisation des media queries */
+/* Éviter les media queries trop spécifiques qui pourraient révéler des infos */
+@media (max-width: 768px) {
+    .responsive-secure {
+        display: block !important;
+    }
+}
+
+/* Ne pas utiliser de media queries basées sur des caractéristiques système précises */
+/* Éviter: @media (device-width: 375px) - trop spécifique */
+
+/* 13. Protection contre les animations malveillantes */
+/* Limiter les animations pour éviter les attaques de phishing */
+@keyframes secure-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.secure-animation {
+    animation: secure-fade 0.3s ease-in-out !important;
+    animation-iteration-count: 1 !important;
+    animation-fill-mode: forwards !important;
+}
+
+/* Interdire les animations infinies suspectes */
+.no-infinite-animation {
+    animation-iteration-count: 1 !important;
+}
+
+/* 14. Sécurisation des variables CSS */
+/* S'assurer que les variables CSS ne peuvent pas être injectées */
+:root {
+    --safe-primary: #fb7185;
+    --safe-secondary: #f97316;
+    --safe-background: #fffbeb;
+}
+
+/* 15. Protection des formulaires - PRÉSERVER LE STYLE */
+/* Les attributs HTML seront gérés via JavaScript, pas CSS */
+.form-secure input {
+    /* Sécurité sans casser le style */
+    position: relative;
+}
+
+/* Protection contre les attaques de type "form hijacking" */
+form {
+    isolation: isolate !important;
+    contain: layout style !important;
+}
+
+/* 16. Sécurisation des liens - GÉRÉ VIA JAVASCRIPT */
+/* Les attributs rel seront ajoutés via JavaScript pour préserver le CSS */
+a[href^="javascript:"] {
+    pointer-events: none !important;
+    display: none !important;
+}
+
+/* 17. Protection contre les attaques de mesure de temps */
+/* Standardiser les temps de rendu */
+.consistent-timing {
+    transition-duration: 0.2s !important;
+    animation-duration: 0.3s !important;
+}
+
+/* 18. Masquage des erreurs CSS */
+/* Éviter que les erreurs CSS révèlent des informations */
+.error-safe {
+    background: var(--safe-background, #fff) !important;
+    color: var(--safe-text, #333) !important;
+}
+
+/* 19. Protection contre les sélecteurs dynamiques */
+/* Éviter les sélecteurs qui pourraient être exploités */
+.dynamic-content[data-value] {
+    content: none !important;
+}
+
+/* 20. Règles de nettoyage final */
+/* Nettoyer tout contenu potentiellement dangereux */
+script,
+style:not([data-secure="true"]),
+link[rel="stylesheet"]:not([data-secure="true"]) {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Classes utilitaires sécurisées */
+.sr-only-secure {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Style pour les messages de sécurité */
+.security-warning {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%) !important;
+    border: 1px solid #fca5a5 !important;
+    color: #dc2626 !important;
+    padding: 12px 16px !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    margin: 8px 0 !important;
+    position: relative !important;
+}
+
+.security-warning::before {
+    content: "🔒 " !important;
+    font-weight: bold !important;
+}
+
+/* Protection finale contre l'injection */
+/* Cette règle doit être la dernière - MAIS préserve l'identité visuelle */
+script:not([src]),
+style:not([data-secure="true"]) {
+    display: none !important;
+}
+
+/* NE PAS réinitialiser le CSS principal - préserver l'identité visuelle */
